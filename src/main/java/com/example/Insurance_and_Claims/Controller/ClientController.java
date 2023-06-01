@@ -1,13 +1,13 @@
 package com.example.Insurance_and_Claims.Controller;
 
 import com.example.Insurance_and_Claims.Dto.LoginDto;
+import com.example.Insurance_and_Claims.Model.Beneficiary;
 import com.example.Insurance_and_Claims.Model.Client;
 import com.example.Insurance_and_Claims.Response.LoginMessage;
 import com.example.Insurance_and_Claims.Service.BeneficiaryService;
 import com.example.Insurance_and_Claims.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,6 +71,7 @@ public class ClientController {
     public Optional<Client>findClientById(@PathVariable("id")Long id){
         return clientService.findById(id);
     }
+
 //    @GetMapping(path = "/{id}")
 //    public ClientDto getClientById(@PathVariable("id")Long id,@RequestParam(value = "clientData",required = false)boolean clientData){
 //        return clientService.getById(id,clientData);
@@ -81,6 +82,7 @@ public class ClientController {
         client.setId(id);
         return clientService.updateClient(client);
     }
+
 //    @PutMapping("/{id}/beneficiary/{beneficiary_id}")
 //    Client assignBenefeciaryToClient(@PathVariable Long id, @PathVariable Long beneficiary_id)
 //    {

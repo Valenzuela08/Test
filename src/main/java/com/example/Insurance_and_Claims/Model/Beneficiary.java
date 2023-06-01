@@ -140,4 +140,8 @@ public class Beneficiary {
         public void setRelationship(String relationship) {
                 this.relationship = relationship;
         }
+
+        public void enrollClient(Client client) {
+                this.client=client;
+        }
 }

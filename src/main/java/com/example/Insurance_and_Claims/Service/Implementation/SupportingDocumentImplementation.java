@@ -2,7 +2,6 @@ package com.example.Insurance_and_Claims.Service.Implementation;
 
 import com.example.Insurance_and_Claims.Model.SupportingDocument;
 import com.example.Insurance_and_Claims.Repository.SupportingDocumentRepository;
-import com.example.Insurance_and_Claims.Response.ResponseData;
 import com.example.Insurance_and_Claims.Service.SupportingDocumentService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -10,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -60,6 +60,10 @@ public class SupportingDocumentImplementation implements SupportingDocumentServi
 //        }
 //        return filename.substring(dotIndex+1);
 //    }
+    @Override
+    public Optional<SupportingDocument> findById(String id) {
+        return supportingDocumentRepository.findById(id);
+}
 
 
     @Override
@@ -87,7 +91,7 @@ public class SupportingDocumentImplementation implements SupportingDocumentServi
     }
 
     @Override
-    public List<SupportingDocument> findALLSupportingDocument() {
+    public List<SupportingDocument> getAllUploadedDocuments() {
         return supportingDocumentRepository.findAll();
     }
 }

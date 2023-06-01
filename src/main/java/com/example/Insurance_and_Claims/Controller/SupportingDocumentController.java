@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/document")
@@ -51,6 +52,11 @@ public class SupportingDocumentController   {
         return ResponseEntity.ok(responseDataList);
     }
 
+    @GetMapping(path = "/{id}")
+    public Optional<SupportingDocument> findDocumentById(@PathVariable("id")String id) throws Exception {
+        return supportingDocumentService.findById(id);
+    }
+
 
 //    @PostMapping("/upload")
 //    public ResponseData uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
@@ -82,8 +88,9 @@ public class SupportingDocumentController   {
                 "supportingDocument;filename=\""+supportingDocument.getFileName()+"\"")
                 .body( new ByteArrayResource(supportingDocument.getData()));
     }
-    @GetMapping(path = "/view")
-    public List<SupportingDocument> findAllSupportingDocument() {
-        return supportingDocumentService.findALLSupportingDocument();
+    @GetMapping("/all")
+    public ResponseEntity<List<SupportingDocument>> getAllUploadedDocuments() {
+        List<SupportingDocument> uploadedDocuments = supportingDocumentService.getAllUploadedDocuments();
+        return ResponseEntity.ok(uploadedDocuments);
     }
 }

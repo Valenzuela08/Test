@@ -41,7 +41,7 @@ public class VehicleController {
         vehicle.setVehicle_id(vehicle_id);
         return vehicleService.updateVehicle(vehicle);
     }
-    @PutMapping("/{vehicle_id}/insurance/{insurance_id}")
+    @PutMapping("/{insurance_id}/condition/{vehicle_id}")
     Vehicle assignVehicleConditionToInsurance(@PathVariable Long vehicle_id, @PathVariable Long insurance_id)
     {
         Vehicle vehicle=vehicleService.findById(vehicle_id).get();

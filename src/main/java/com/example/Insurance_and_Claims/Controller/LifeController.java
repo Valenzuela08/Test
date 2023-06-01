@@ -41,7 +41,7 @@ public class LifeController {
         life.setLife_id(life_id);
         return lifeService.updateLife(life);
     }
-    @PutMapping("/{life_id}/insurance/{insurance_id}")Life assignLifeConditionToInsurance(@PathVariable Long life_id,@PathVariable Long insurance_id)
+    @PutMapping("/{insurance_id}/condition/{life_id}")Life assignLifeConditionToInsurance(@PathVariable Long life_id,@PathVariable Long insurance_id)
     {
         Life life=lifeService.findById(life_id).get();
         Insurance insurance= insuranceService.findById(insurance_id).get();

@@ -1,11 +1,11 @@
 package com.example.Insurance_and_Claims.Service;
 
 import com.example.Insurance_and_Claims.Model.SupportingDocument;
-import com.example.Insurance_and_Claims.Response.ResponseData;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface SupportingDocumentService {
@@ -13,6 +13,8 @@ public interface SupportingDocumentService {
 
     SupportingDocument getSupportingDocument(String id) throws Exception;
 
-    List<SupportingDocument> findALLSupportingDocument();
+    Optional<SupportingDocument> findById(String id);
+
+    List<SupportingDocument> getAllUploadedDocuments();
 }
 //List<SupportingDocument>uploadFiles(MultipartFile[] multipartFiles, Map<String, String>headers);

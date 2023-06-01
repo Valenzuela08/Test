@@ -1,6 +1,5 @@
 package com.example.Insurance_and_Claims.Model;
 
-import com.example.Insurance_and_Claims.Model.Client;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -137,5 +136,9 @@ public class Dependent {
 
     public void setRelationship(String relationship) {
         this.relationship = relationship;
+    }
+
+    public void enrollClient(Client client) {
+        this.client=client;
     }
 }

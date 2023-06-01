@@ -1,7 +1,9 @@
 package com.example.Insurance_and_Claims.Controller;
 
-import com.example.Insurance_and_Claims.Service.BeneficiaryService;
 import com.example.Insurance_and_Claims.Model.Beneficiary;
+import com.example.Insurance_and_Claims.Model.Client;
+import com.example.Insurance_and_Claims.Service.BeneficiaryService;
+import com.example.Insurance_and_Claims.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ import java.util.Optional;
 public class BeneficiaryController {
     @Autowired
     private final BeneficiaryService beneficiaryService;
+
+    @Autowired
+    ClientService clientService;
 
     public BeneficiaryController(BeneficiaryService beneficiaryService) {
         this.beneficiaryService = beneficiaryService;
@@ -40,5 +45,14 @@ public class BeneficiaryController {
     @DeleteMapping(path="delete/{beneficiary_id}")
     public void deleteBeneficiary(@PathVariable("beneficiary_id")Long beneficiary_id){
         beneficiaryService.deleteBeneficiary(beneficiary_id);
+    }
+    @PutMapping("/{beneficiary_id}/client/{id}")
+    Beneficiary enrollBeneficiaryToClient(@PathVariable Long beneficiary_id, @PathVariable Long id)
+    {
+        Beneficiary beneficiary=beneficiaryService.findById(beneficiary_id).get();
+        Client client= clientService.findById(id).get();
+        beneficiary.enrollClient(client);
+        return beneficiaryService.saveBeneficiary(beneficiary);
+
     }
 }
